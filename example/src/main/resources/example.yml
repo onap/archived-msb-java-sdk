@@ -1,0 +1,9 @@
+server:
+  type: simple
+  rootPath: '/api/rpc/v1/*'
+  applicationContextPath: /
+  adminContextPath: /admin
+  connector:
+    type: http
+    port: 9090
+  
