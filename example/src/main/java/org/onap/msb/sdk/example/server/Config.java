@@ -11,24 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package org.onap.msb.sdk.httpclient.client;
+package org.onap.msb.sdk.example.server;
 
-import org.onap.msb.sdk.httpclient.annotaion.ServiceHttpEndPoint;
-import org.onap.msb.sdk.httpclient.common.Animal;
+import io.dropwizard.Configuration;
 
-import retrofit2.Call;
-import retrofit2.http.GET;
-import retrofit2.http.Path;
+public class Config extends Configuration {
 
-/**
- * @author hu.rui
- *
- */
 
-@ServiceHttpEndPoint(serviceName = "animals", serviceVersion = "v1", nameSpace = "javaAF")
-public interface AnimalServiceClient {
-
-  @GET("animals/{name}")
-  Call<Animal> queryAnimal(@Path("name") String name);
 
 }
+
+

@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package org.onap.msb.sdk.httpclient.server;
+package org.onap.msb.sdk.example.server;
 
 import java.net.InetAddress;
 import java.util.HashSet;
@@ -50,7 +50,7 @@ public class MsbHelper {
     msinfo.setUrl("/api/rpc/v1");
     msinfo.setProtocol("REST");
     msinfo.setVisualRange("0|1");
-
+    
     Set<Node> nodes = new HashSet<>();
     Node node1 = new Node();
     node1.setIp(InetAddress.getLocalHost().getHostAddress());
@@ -58,9 +58,5 @@ public class MsbHelper {
     nodes.add(node1);
     msinfo.setNodes(nodes);
     msbClient.registerMicroServiceInfo(msinfo, false);
-
   }
-
-
-
 }
