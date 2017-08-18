@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package org.onap.msb.sdk.httpclient.common;
+package org.onap.msb.sdk.example.common;
 
 import java.io.Serializable;
 

@@ -11,7 +11,7 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package org.onap.msb.sdk.httpclient.server.resources;
+package org.onap.msb.sdk.example.server.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -20,7 +20,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.onap.msb.sdk.httpclient.common.Animal;
+import org.onap.msb.sdk.example.common.Animal;
 
 
 @Path("/animals")
@@ -30,9 +30,9 @@ public class AnimalResource {
   @GET
   @Path("/{name}")
   @Produces(MediaType.APPLICATION_JSON)
-  public Response query(@PathParam("name") String name) {
-    return Response.ok(new Animal("animal", name, (int) System.currentTimeMillis() % 10)).build();
+  public Response queryJson(@PathParam("name") String name) {
+    return Response.ok(new Animal("animal", name, Math.abs((int) System.currentTimeMillis() % 10)))
+        .build();
   }
-
 
 }

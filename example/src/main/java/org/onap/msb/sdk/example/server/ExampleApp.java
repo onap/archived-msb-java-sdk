@@ -11,10 +11,10 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-package org.onap.msb.sdk.httpclient.server;
+package org.onap.msb.sdk.example.server;
 
+import org.onap.msb.sdk.example.server.resources.AnimalResource;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
-import org.onap.msb.sdk.httpclient.server.resources.AnimalResource;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
@@ -38,10 +38,13 @@ public class ExampleApp extends Application<Config> {
 
   @Override
   public void run(Config configuration, Environment environment) throws Exception {
-
+    
+    String MSB_IP="127.0.0.1";
+    int MSB_Port=10081;
+    
     environment.jersey().register(new AnimalResource());
 
-    MSBServiceWrapperClient msbClient = new MSBServiceWrapperClient("127.0.0.1", 10081);
+    MSBServiceWrapperClient msbClient = new MSBServiceWrapperClient(MSB_IP, MSB_Port);
 
     MsbHelper helper = new MsbHelper(msbClient);
     helper.registerMsb();
