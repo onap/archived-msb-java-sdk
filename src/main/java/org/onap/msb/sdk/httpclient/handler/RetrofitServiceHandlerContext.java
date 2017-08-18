@@ -23,7 +23,7 @@ import org.onap.msb.sdk.httpclient.conf.HttpClientConf;
 import org.onap.msb.sdk.httpclient.convert.IConverterFactoryBuilder;
 import org.onap.msb.sdk.httpclient.lb.ILoadBalanceStrategy;
 import org.onap.msb.sdk.httpclient.metric.MetricManager;
-import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
+import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 
 /**
@@ -65,7 +65,7 @@ public class RetrofitServiceHandlerContext {
 
   private HttpClientConf httpClientConf;
 
-  private MSBServiceWrapperClient msbClient;
+  private MSBServiceClient msbClient;
 
 
 
@@ -79,11 +79,11 @@ public class RetrofitServiceHandlerContext {
 
 
 
-  public MSBServiceWrapperClient getMsbClient() {
+  public MSBServiceClient getMsbClient() {
     return msbClient;
   }
 
-  public void setMsbClient(MSBServiceWrapperClient msbClient) {
+  public void setMsbClient(MSBServiceClient msbClient) {
     this.msbClient = msbClient;
   }
 

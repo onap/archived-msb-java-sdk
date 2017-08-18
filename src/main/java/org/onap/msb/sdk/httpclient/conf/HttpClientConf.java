@@ -18,10 +18,6 @@ package org.onap.msb.sdk.httpclient.conf;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * @author 10071214
- *
- */
 public class HttpClientConf {
 
   @JsonProperty

@@ -14,7 +14,7 @@
 package org.onap.msb.sdk.example.server;
 
 import org.onap.msb.sdk.example.server.resources.AnimalResource;
-import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
+import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 import io.dropwizard.Application;
 import io.dropwizard.setup.Environment;
@@ -44,7 +44,7 @@ public class ExampleApp extends Application<Config> {
     
     environment.jersey().register(new AnimalResource());
 
-    MSBServiceWrapperClient msbClient = new MSBServiceWrapperClient(MSB_IP, MSB_Port);
+    MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
 
     MsbHelper helper = new MsbHelper(msbClient);
     helper.registerMsb();

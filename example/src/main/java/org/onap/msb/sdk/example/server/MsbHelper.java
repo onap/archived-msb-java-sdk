@@ -20,20 +20,13 @@ import java.util.Set;
 import org.jvnet.hk2.annotations.Service;
 import org.onap.msb.sdk.discovery.entity.MicroServiceInfo;
 import org.onap.msb.sdk.discovery.entity.Node;
-import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
+import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
-/**
- * @author hu.rui
- *
- */
-@Service
 public class MsbHelper {
 
-  private MSBServiceWrapperClient msbClient;
+  private MSBServiceClient msbClient;
 
-
-
-  public MsbHelper(MSBServiceWrapperClient msbClient) {
+  public MsbHelper(MSBServiceClient msbClient) {
     super();
     this.msbClient = msbClient;
   }

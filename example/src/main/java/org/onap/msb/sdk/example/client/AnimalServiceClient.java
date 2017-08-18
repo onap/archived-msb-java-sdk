@@ -20,11 +20,6 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
-/**
- * @author hu.rui
- *
- */
-
 @ServiceHttpEndPoint(serviceName = "animals", serviceVersion = "v1")
 public interface AnimalServiceClient {
 

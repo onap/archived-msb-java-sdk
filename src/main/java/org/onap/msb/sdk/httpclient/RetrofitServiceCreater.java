@@ -24,22 +24,18 @@ import java.util.List;
 import org.onap.msb.sdk.httpclient.conf.HttpClientConf;
 import org.onap.msb.sdk.httpclient.handler.RetrofitServiceHandlerContext;
 import org.onap.msb.sdk.httpclient.handler.RetrofitServiceHandlerFactory;
-import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
+import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
-/**
- * @author 10071214
- *
- */
 public class RetrofitServiceCreater {
 
 
   private RetrofitServiceHandlerFactory factory = new RetrofitServiceHandlerFactory();
 
-  private MSBServiceWrapperClient msbClient;
+  private MSBServiceClient msbClient;
 
 
   public RetrofitServiceCreater(HttpClientConf globalHttpClientConf,
-      MSBServiceWrapperClient msbClient) {
+      MSBServiceClient msbClient) {
 
     RetrofitServiceHandlerContext.setGlobalHttpClientConf(globalHttpClientConf);
     this.msbClient = msbClient;

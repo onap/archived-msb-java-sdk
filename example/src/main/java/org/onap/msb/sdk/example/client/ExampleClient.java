@@ -11,9 +11,6 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  ******************************************************************************/
-/**
- * 
- */
 package org.onap.msb.sdk.example.client;
 
 import java.io.IOException;
@@ -21,7 +18,7 @@ import java.io.IOException;
 import org.onap.msb.sdk.example.common.Animal;
 import org.onap.msb.sdk.httpclient.RetrofitServiceCreater;
 import org.onap.msb.sdk.httpclient.conf.HttpClientConf;
-import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
+import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 
 public class ExampleClient {
@@ -35,7 +32,7 @@ public class ExampleClient {
     int MSB_Port=10081;
     
     HttpClientConf globalHttpClientConf = new HttpClientConf();
-    MSBServiceWrapperClient msbClient = new MSBServiceWrapperClient(MSB_IP, MSB_Port);
+    MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
 
     RetrofitServiceCreater retrofitServiceCreater =
         new RetrofitServiceCreater(globalHttpClientConf, msbClient);

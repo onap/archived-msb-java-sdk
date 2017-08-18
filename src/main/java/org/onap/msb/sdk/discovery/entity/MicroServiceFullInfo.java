@@ -24,7 +24,7 @@ public class MicroServiceFullInfo extends Service<NodeInfo> implements Serializa
 
   private Set<NodeInfo> nodes;
 
-  // 状态 0:不可用 1：可用,预留
+  //Reserved
   private String status = "1";
 
   public Set<NodeInfo> getNodes() {

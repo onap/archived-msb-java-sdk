@@ -28,7 +28,7 @@ import org.onap.msb.sdk.httpclient.handler.impl.LBBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.MetricmanagerBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.RetrofitHandlerContextBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.ServiceHttpEndPointBeanObjectBuilder;
-import org.onap.msb.sdk.httpclient.msb.MSBServiceWrapperClient;
+import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 import com.google.common.collect.Lists;
 
@@ -89,7 +89,7 @@ public class RetrofitServiceHandlerFactory {
 
   public InvocationHandler buildInvocationHandler(Class<?> retrofitSrvInterfaceClazz,
       ServiceHttpEndPointBeanObject serviceHttpEndPointBeanObject, HttpClientConf httpClientConf,
-      MSBServiceWrapperClient msbClient) {
+      MSBServiceClient msbClient) {
 
     RetrofitServiceHandlerContext ctx = new RetrofitServiceHandlerContext();
     ctx.setRetrofitSrvInterfaceClazz(retrofitSrvInterfaceClazz);
