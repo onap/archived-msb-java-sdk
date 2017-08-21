@@ -16,8 +16,7 @@ package org.onap.msb.sdk.example.client;
 import java.io.IOException;
 
 import org.onap.msb.sdk.example.common.Animal;
-import org.onap.msb.sdk.httpclient.RetrofitServiceCreater;
-import org.onap.msb.sdk.httpclient.conf.HttpClientConf;
+import org.onap.msb.sdk.httpclient.RestServiceCreater;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 
@@ -31,14 +30,14 @@ public class ExampleClient {
     String MSB_IP="127.0.0.1";
     int MSB_Port=10081;
     
-    HttpClientConf globalHttpClientConf = new HttpClientConf();
     MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
-
-    RetrofitServiceCreater retrofitServiceCreater =
-        new RetrofitServiceCreater(globalHttpClientConf, msbClient);
+    
+    RestServiceCreater restServiceCreater =
+        new RestServiceCreater(msbClient);
 
     AnimalServiceClient implProxy =
-        retrofitServiceCreater.createRetrofitService(AnimalServiceClient.class);
+        restServiceCreater.createService(AnimalServiceClient.class);
+    
     Animal animal = implProxy.queryAnimal1("panda").execute().body();
     System.out.println("animal:" + animal);
   }

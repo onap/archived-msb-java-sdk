@@ -26,26 +26,27 @@ import org.onap.msb.sdk.httpclient.handler.RetrofitServiceHandlerContext;
 import org.onap.msb.sdk.httpclient.handler.RetrofitServiceHandlerFactory;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
-public class RetrofitServiceCreater {
+public class RestServiceCreater {
 
 
   private RetrofitServiceHandlerFactory factory = new RetrofitServiceHandlerFactory();
 
   private MSBServiceClient msbClient;
 
+  public RestServiceCreater(MSBServiceClient msbClient) {
+    this(new HttpClientConf(), msbClient);
+  }
 
-  public RetrofitServiceCreater(HttpClientConf globalHttpClientConf,
+  public RestServiceCreater(HttpClientConf globalHttpClientConf,
       MSBServiceClient msbClient) {
 
     RetrofitServiceHandlerContext.setGlobalHttpClientConf(globalHttpClientConf);
     this.msbClient = msbClient;
 
     factory.init();
-
-
   }
 
-  public <T> T createRetrofitService(Class<T> retrofitSrvInterfaceClazz,
+  public <T> T createService(Class<T> retrofitSrvInterfaceClazz,
       ServiceHttpEndPointBeanObject serviceHttpEndPointBeanObject) {
 
     InvocationHandler handler = factory.buildInvocationHandler(retrofitSrvInterfaceClazz,
@@ -61,7 +62,7 @@ public class RetrofitServiceCreater {
   }
 
 
-  public <T> T createRetrofitService(Class<T> retrofitSrvInterfaceClazz,
+  public <T> T createService(Class<T> retrofitSrvInterfaceClazz,
       ServiceHttpEndPointBeanObject serviceHttpEndPointBeanObject, HttpClientConf httpClientConf) {
 
 
@@ -77,7 +78,7 @@ public class RetrofitServiceCreater {
     return (T) targetInterface;
   }
 
-  public <T> T createRetrofitService(Class<T> retrofitSrvInterfaceClazz,
+  public <T> T createService(Class<T> retrofitSrvInterfaceClazz,
       HttpClientConf httpClientConf) {
 
 
@@ -94,7 +95,7 @@ public class RetrofitServiceCreater {
   }
 
 
-  public <T> T createRetrofitService(Class<T> retrofitSrvInterfaceClazz) {
+  public <T> T createService(Class<T> retrofitSrvInterfaceClazz) {
 
 
     InvocationHandler handler =
