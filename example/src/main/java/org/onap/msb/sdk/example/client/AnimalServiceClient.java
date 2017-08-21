@@ -24,5 +24,5 @@ import retrofit2.http.Path;
 public interface AnimalServiceClient {
 
   @GET("animals/{name}")
-  Call<Animal> queryAnimal1(@Path("name") String name);
+  Call<Animal> queryAnimal(@Path("name") String name);
 }

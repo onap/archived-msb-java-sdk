@@ -38,7 +38,7 @@ public class ExampleClient {
     AnimalServiceClient implProxy =
         restServiceCreater.createService(AnimalServiceClient.class);
     
-    Animal animal = implProxy.queryAnimal1("panda").execute().body();
+    Animal animal = implProxy.queryAnimal("panda").execute().body();
     System.out.println("animal:" + animal);
   }
 
