@@ -27,6 +27,7 @@ public class ExampleClient {
    * @throws IOException
    */
   public static void main(String[] args) throws IOException {
+    //For real use case, MSB IP and Port should come from configuration file instead of hard code here
     String MSB_IP="127.0.0.1";
     int MSB_Port=10081;
     
