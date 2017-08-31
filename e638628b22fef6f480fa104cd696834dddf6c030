@@ -1,0 +1,95 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_08ded211",
+        "filename": "example-spring-boot/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 4,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-08-31T15:06:44Z",
+      "side": 1,
+      "message": "POM should inherit from org.onap.oparent",
+      "revId": "e638628b22fef6f480fa104cd696834dddf6c030",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_e8e26ed4",
+        "filename": "example-spring-boot/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-08-31T15:06:44Z",
+      "side": 1,
+      "message": "groupId org.onap.msb.sdk",
+      "revId": "e638628b22fef6f480fa104cd696834dddf6c030",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_c8e7aae3",
+        "filename": "example-spring-boot/pom.xml",
+        "patchSetId": 1
+      },
+      "lineNbr": 7,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-08-31T15:06:44Z",
+      "side": 1,
+      "message": "msb-java-sdk-sprint-boot-example",
+      "revId": "e638628b22fef6f480fa104cd696834dddf6c030",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_a8ec66c8",
+        "filename": "example-spring-boot/src/main/java/org/onap/boot/example/demo/EmployeeServiceClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-08-31T15:06:44Z",
+      "side": 1,
+      "message": "1. According to ONAP request, A Apache license header should be put in the file\n\n2. Could we change the package to org.onap.msb.sdk.example.spingboot?",
+      "revId": "e638628b22fef6f480fa104cd696834dddf6c030",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_a8034672",
+        "filename": "example-spring-boot/src/main/java/org/onap/boot/example/demo/controller/EmployeeController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 13,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-08-31T15:06:44Z",
+      "side": 1,
+      "message": "Can we remove these trailing whitespaces?",
+      "range": {
+        "startLine": 13,
+        "startChar": 31,
+        "endLine": 13,
+        "endChar": 32
+      },
+      "revId": "e638628b22fef6f480fa104cd696834dddf6c030",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
