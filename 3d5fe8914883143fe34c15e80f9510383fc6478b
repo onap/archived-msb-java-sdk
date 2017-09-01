@@ -1,0 +1,174 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_9e179851",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_7e0cf442",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Could we remove the trailing whitespaces?(other files as well)",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_5e093030",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Could we remove the trailing whitespaces?(other files as well)",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_3e066c21",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Could we remove the trailing whitespaces?(other files as well)",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_b909562e",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/EmployeeServiceClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_59102a4e",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ExampleClient.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_191aa26e",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/SpringBootApp.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_f926beb9",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/common/MsbHelper.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_d92bfa80",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/controller/EmployeeController.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 1,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_b920369c",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/model/Employee.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T01:52:02Z",
+      "side": 1,
+      "message": "Should be Infosys or your name here",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
