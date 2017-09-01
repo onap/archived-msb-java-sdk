@@ -19,6 +19,24 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_dd13e55a",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 2,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2017-09-01T05:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_9e179851",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_7e0cf442",
         "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
         "patchSetId": 1
@@ -30,6 +48,24 @@
       "writtenOn": "2017-09-01T01:52:02Z",
       "side": 1,
       "message": "Could we remove the trailing whitespaces?(other files as well)",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_bd10214f",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 3,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2017-09-01T05:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_7e0cf442",
       "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
@@ -53,6 +89,24 @@
     },
     {
       "key": {
+        "uuid": "9a437d4f_9d1d5d69",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 6,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2017-09-01T05:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_5e093030",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
         "uuid": "9a437d4f_3e066c21",
         "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
         "patchSetId": 1
@@ -64,6 +118,24 @@
       "writtenOn": "2017-09-01T01:52:02Z",
       "side": 1,
       "message": "Could we remove the trailing whitespaces?(other files as well)",
+      "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_7d1ab96f",
+        "filename": "example-spring-boot/src/main/java/org/onap/msb/sdk/example/springboot/ContextRefreshedListener.java",
+        "patchSetId": 1
+      },
+      "lineNbr": 8,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2017-09-01T05:24:48Z",
+      "side": 1,
+      "message": "Done",
+      "parentUuid": "9a437d4f_3e066c21",
       "revId": "3d5fe8914883143fe34c15e80f9510383fc6478b",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
