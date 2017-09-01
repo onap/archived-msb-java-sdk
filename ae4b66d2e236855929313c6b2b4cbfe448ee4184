@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "9a437d4f_3de311db",
+        "filename": "example-spring-boot/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 189
+      },
+      "writtenOn": "2017-09-01T07:41:27Z",
+      "side": 1,
+      "message": "Dependency should include msb-java-sdk?\n\u003cdependency\u003e\n          \u003cgroupId\u003eorg.onap.msb.sdk\u003c/groupId\u003e\n\t\t\t\u003cartifactId\u003emsb-java-sdk\u003c/artifactId\u003e\n\t\t\t\u003cversion\u003e1.0.0-SNAPSHOT\u003c/version\u003e\n        \u003c/dependency\u003e",
+      "revId": "ae4b66d2e236855929313c6b2b4cbfe448ee4184",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
+    }
+  ]
+}
