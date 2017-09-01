@@ -16,6 +16,24 @@
       "revId": "ae4b66d2e236855929313c6b2b4cbfe448ee4184",
       "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "9a437d4f_3d9b111a",
+        "filename": "example-spring-boot/pom.xml",
+        "patchSetId": 2
+      },
+      "lineNbr": 38,
+      "author": {
+        "id": 1841
+      },
+      "writtenOn": "2017-09-01T08:28:00Z",
+      "side": 1,
+      "message": "msb-java-sdk dependency already included. Please see line no 55",
+      "parentUuid": "9a437d4f_3de311db",
+      "revId": "ae4b66d2e236855929313c6b2b4cbfe448ee4184",
+      "serverId": "14b4e41f-c4e3-4fb9-9955-6a9b5656895a",
+      "unresolved": false
     }
   ]
 }
