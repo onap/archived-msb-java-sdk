@@ -1,0 +1,14 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "MicroService Bus rest API Sample",
+    "version" : "1.0.0",
+    "title" : "MicroService Bus rest API Sample",
+    "license" : {
+      "name" : "https://wiki.onap.org/display/DW/Apache+2.0+License"
+    }
+  },
+  "host" : "127.0.0.1:80",
+  "basePath" : "/api/microservices/v1",
+  "schemes" : [ "http", "https" ]
+}

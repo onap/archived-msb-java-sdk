@@ -1,40 +1,112 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
     <parent>
       <groupId>org.onap.oparent</groupId>
       <artifactId>oparent</artifactId>
       <version>1.0.0-SNAPSHOT</version>
     </parent>
-  
-	<groupId>org.onap.msb.java-sdk</groupId>
-	<artifactId>msb-java-sdk-example</artifactId>
-	<name>msb-java-sdk-example</name>
-	<version>1.0.0-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
-	<dependencies>
+    <groupId>org.onap.msb.java-sdk</groupId>
+    <artifactId>msb-java-sdk-example</artifactId>
+    <name>msb-java-sdk-example</name>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <dependencies>
         <dependency>
           <groupId>org.onap.msb.java-sdk</groupId>
-			<artifactId>msb-java-sdk</artifactId>
-			<version>1.0.0-SNAPSHOT</version>
-        </dependency>    
-		<dependency>
-			<groupId>io.dropwizard</groupId>
-			<artifactId>dropwizard-core</artifactId>
-			<version>0.8.0</version>
-		</dependency>   
-	</dependencies>
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-compiler-plugin</artifactId>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
+            <artifactId>msb-java-sdk</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard</groupId>
+            <artifactId>dropwizard-core</artifactId>
+            <version>0.8.0</version>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+                        <!-- JSON -->
+             <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>properties-maven-plugin</artifactId>
+                    <version>1.0.0</version>
+                      <executions>
+                          <execution>
+                            <phase>initialize</phase>
+                            <goals>
+                              <goal>read-project-properties</goal>
+                            </goals>
+                            <configuration>
+                              <files>
+                                <file>${basedir}/src/main/resources/swagger.properties</file>
+                              </files>
+                            </configuration>
+                          </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>com.github.kongchen</groupId>
+                    <artifactId>swagger-maven-plugin</artifactId>
+                    <version>3.1.4</version>
+                    <configuration>
+                        <apiSources>
+                          <apiSource>
+                                <locations>${api-rest-package}</locations>
+                                <schemes>http,https</schemes>
+                                <host>${api-host-ip}:${api-host-port}</host>
+                                <basePath>${api-base-path}</basePath>
+                                <info>
+                                    <title>${api-title}</title>
+                                    <version>${api-version}</version>
+                                    <description>${api-description}</description>
+                                    <license>
+                                        <name>${api-license}</name>
+                                    </license>
+                                </info>
+                                <swaggerDirectory>${basedir}/src/main/resources</swaggerDirectory>
+                            </apiSource>
+                        </apiSources>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>generate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-install-plugin</artifactId>
+                    <version>2.3.1</version>
+                    <executions>
+                        <execution>
+                            <id>install-file-id</id>
+                            <phase>install</phase>
+                            <goals>
+                                <goal>install-file</goal>
+                            </goals>
+                            <configuration>
+                                <file>${basedir}/src/main/resources/swagger.json</file>
+                                <groupId>${project.groupId}</groupId>
+                                <artifactId>${project.artifactId}-swagger-schema</artifactId>
+                                <version>${project.version}</version>
+                                <packaging>json</packaging>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+        </plugins>
+    </build>
 </project>
