@@ -39,8 +39,8 @@ public class ExampleApp extends Application<Config> {
   @Override
   public void run(Config configuration, Environment environment) throws Exception {
     
-    String MSB_IP="127.0.0.1";
-    int MSB_Port=10081;
+    String MSB_IP="10.96.33.44";
+    int MSB_Port=30080;
     
     environment.jersey().register(new AnimalResource());
 
