@@ -28,8 +28,8 @@ public class ExampleClient {
    */
   public static void main(String[] args) throws IOException {
     //For real use case, MSB IP and Port should come from configuration file instead of hard code here
-    String MSB_IP="127.0.0.1";
-    int MSB_Port=10081;
+    String MSB_IP="10.96.33.44";
+    int MSB_Port=30081;
     
     MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
     
