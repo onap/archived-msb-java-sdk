@@ -22,25 +22,24 @@ import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 public class ExampleClient {
 
-  /**
-   * @param args
-   * @throws IOException
-   */
-  public static void main(String[] args) throws IOException {
-    //For real use case, MSB IP and Port should come from configuration file instead of hard code here
-    String MSB_IP="10.96.33.44";
-    int MSB_Port=30081;
-    
-    MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
-    
-    RestServiceCreater restServiceCreater =
-        new RestServiceCreater(msbClient);
+    /**
+     * @param args
+     * @throws IOException
+     */
+    public static void main(String[] args) throws IOException {
+        // For real use case, MSB discovery IP and Port should come from configuration file instead
+        // of hard code here
+        String msb_discovery_ip = "127.0.0.1";
+        int msb_discovery_port = 10081;
 
-    AnimalServiceClient implProxy =
-        restServiceCreater.createService(AnimalServiceClient.class);
-    
-    Animal animal = implProxy.queryAnimal("panda").execute().body();
-    System.out.println("animal:" + animal);
-  }
+        MSBServiceClient msbClient = new MSBServiceClient(msb_discovery_ip, msb_discovery_port);
+
+        RestServiceCreater restServiceCreater = new RestServiceCreater(msbClient);
+
+        AnimalServiceClient implProxy = restServiceCreater.createService(AnimalServiceClient.class);
+
+        Animal animal = implProxy.queryAnimal("panda").execute().body();
+        System.out.println("animal:" + animal);
+    }
 
 }

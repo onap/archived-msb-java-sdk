@@ -22,33 +22,34 @@ import io.dropwizard.setup.Environment;
 
 public class ExampleApp extends Application<Config> {
 
-  private static final String CONFIGURATION_FILE = "example.yml";
+    private static final String CONFIGURATION_FILE = "example.yml";
 
-  public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception {
 
-    String configFile = null;
-    if (args.length > 1) {
-      configFile = args[0];
-    } else {
-      configFile = ExampleApp.class.getClassLoader().getResource(CONFIGURATION_FILE).getFile();
+        String configFile = null;
+        if (args.length > 1) {
+            configFile = args[0];
+        } else {
+            configFile = ExampleApp.class.getClassLoader().getResource(CONFIGURATION_FILE).getFile();
+        }
+        args = new String[] {"server", configFile};
+        new ExampleApp().run(args);
     }
-    args = new String[] {"server", configFile};
-    new ExampleApp().run(args);
-  }
 
-  @Override
-  public void run(Config configuration, Environment environment) throws Exception {
-    
-    String MSB_IP="10.96.33.44";
-    int MSB_Port=30080;
-    
-    environment.jersey().register(new AnimalResource());
+    @Override
+    public void run(Config configuration, Environment environment) throws Exception {
+        // For real use case, MSB discovery IP and Port should come from configuration file instead
+        // of hard code here
+        String msb_discovery_ip = "127.0.0.1";
+        int msb_discovery_port = 10081;
 
-    MSBServiceClient msbClient = new MSBServiceClient(MSB_IP, MSB_Port);
+        environment.jersey().register(new AnimalResource());
 
-    MsbHelper helper = new MsbHelper(msbClient);
-    helper.registerMsb();
+        MSBServiceClient msbClient = new MSBServiceClient(msb_discovery_ip, msb_discovery_port);
 
-  }
+        MsbHelper helper = new MsbHelper(msbClient);
+        helper.registerMsb();
+
+    }
 
 }
