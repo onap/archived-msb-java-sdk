@@ -4,6 +4,7 @@
 .vscode/
 target/
 .vagrant
+.checkstyle
 /archives/
 *.jar
 *.zip
