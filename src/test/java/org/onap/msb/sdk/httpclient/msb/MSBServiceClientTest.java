@@ -11,19 +11,14 @@
  * or implied. See the License for the specific language governing permissions and limitations under
  * the License.
  */
-package org.onap.msb.sdk.discovery;
-
-import java.util.HashSet;
-import java.util.Set;
+package org.onap.msb.sdk.httpclient.msb;
 
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.onap.msb.sdk.discovery.common.RouteConst;
 import org.onap.msb.sdk.discovery.common.RouteException;
 import org.onap.msb.sdk.discovery.entity.MicroServiceFullInfo;
 import org.onap.msb.sdk.discovery.entity.MicroServiceInfo;
-import org.onap.msb.sdk.discovery.entity.Node;
 import org.onap.msb.sdk.discovery.util.HttpClientUtil;
 import org.onap.msb.sdk.discovery.util.JacksonJsonUtil;
 import org.powermock.api.mockito.PowerMockito;
@@ -32,7 +27,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({HttpClientUtil.class})
-public class MSBServiceTest {
+public class MSBServiceClientTest {
     private static final String MOCK_MSB_URL_REG_UPDATE_TRUE =
                     "http://127.0.0.1:10081/api/microservices/v1/services?createOrUpdate=true";
     private static final String MOCK_MSB_URL_REG_UPDATE_FALSE =
@@ -47,13 +42,12 @@ public class MSBServiceTest {
 
     @Test
     public void test_registration_update_true() throws RouteException {
-        String msbAddress = "127.0.0.1:10081";
         MicroServiceInfo microServiceInfo =
                         (MicroServiceInfo) JacksonJsonUtil.jsonToBean(MOCK_REG_SERVICE_JSON, MicroServiceInfo.class);
         MicroServiceFullInfo microServiceFullInfo = mockMicroServiceFullInfo(microServiceInfo);
         mockHttpPost(MOCK_MSB_URL_REG_UPDATE_TRUE, JacksonJsonUtil.beanToJson(microServiceFullInfo));
-        MSBService msbService = new MSBService();
-        microServiceFullInfo = msbService.registerMicroServiceInfo(msbAddress, microServiceInfo);
+        MSBServiceClient msbClient = new MSBServiceClient("127.0.0.1", 10081);
+        microServiceFullInfo = msbClient.registerMicroServiceInfo(microServiceInfo);
         Assert.assertTrue(microServiceFullInfo.getPath().equals("/aai/v8"));
         Assert.assertTrue(microServiceFullInfo.getProtocol().equals("REST"));
         Assert.assertTrue(microServiceFullInfo.getServiceName().equals("aai"));
@@ -64,13 +58,12 @@ public class MSBServiceTest {
 
     @Test
     public void test_registration_update_false() throws RouteException {
-        String msbAddress = "127.0.0.1:10081";
         MicroServiceInfo microServiceInfo =
                         (MicroServiceInfo) JacksonJsonUtil.jsonToBean(MOCK_REG_SERVICE_JSON, MicroServiceInfo.class);
         MicroServiceFullInfo microServiceFullInfo = mockMicroServiceFullInfo(microServiceInfo);
         mockHttpPost(MOCK_MSB_URL_REG_UPDATE_FALSE, JacksonJsonUtil.beanToJson(microServiceFullInfo));
-        MSBService msbService = new MSBService();
-        microServiceFullInfo = msbService.registerMicroServiceInfo(msbAddress, microServiceInfo, false);
+        MSBServiceClient msbClient = new MSBServiceClient("127.0.0.1", 10081);
+        microServiceFullInfo = msbClient.registerMicroServiceInfo(microServiceInfo, false);
         Assert.assertTrue(microServiceFullInfo.getPath().equals("/aai/v8"));
         Assert.assertTrue(microServiceFullInfo.getProtocol().equals("REST"));
         Assert.assertTrue(microServiceFullInfo.getServiceName().equals("aai"));
@@ -81,14 +74,13 @@ public class MSBServiceTest {
 
     @Test
     public void test_discovery() throws RouteException {
-        String msbAddress = "127.0.0.1:10081";
         MicroServiceInfo microServiceInfo =
                         (MicroServiceInfo) JacksonJsonUtil.jsonToBean(MOCK_REG_SERVICE_JSON, MicroServiceInfo.class);
         MicroServiceFullInfo microServiceFullInfo = mockMicroServiceFullInfo(microServiceInfo);
         mockHttpGet(MOCK_MSB_URL_DIS, JacksonJsonUtil.beanToJson(microServiceFullInfo));
 
-        MSBService msbService = new MSBService();
-        microServiceFullInfo = msbService.queryMicroServiceInfo(msbAddress, "aai", "v8");
+        MSBServiceClient msbClient = new MSBServiceClient("127.0.0.1", 10081);
+        microServiceFullInfo = msbClient.queryMicroServiceInfo("aai", "v8");
         Assert.assertTrue(microServiceFullInfo.getPath().equals("/aai/v8"));
         Assert.assertTrue(microServiceFullInfo.getProtocol().equals("REST"));
         Assert.assertTrue(microServiceFullInfo.getServiceName().equals("aai"));
@@ -96,15 +88,6 @@ public class MSBServiceTest {
         Assert.assertTrue(microServiceFullInfo.getVersion().equals("v8"));
         Assert.assertTrue(microServiceFullInfo.getVisualRange().equals("1"));
     }
-
-    // @Test
-    // public void test_unregistration() throws Exception {
-    // String msbAddress = "127.0.0.1:10081";
-    // mockHttpDel();
-    // MSBService msbService = new MSBService();
-    // msbService.cancelMicroServiceInfo(msbAddress, "aai", "v8");
-    // }
-
 
     private MicroServiceFullInfo mockMicroServiceFullInfo(MicroServiceInfo info) {
         MicroServiceFullInfo serviceInfo = new MicroServiceFullInfo();
@@ -130,10 +113,4 @@ public class MSBServiceTest {
         PowerMockito.when(HttpClientUtil.httpGet(mockMSBUrl)).thenReturn(mockServiceInfoJson);
     }
 
-    // private void mockHttpDel() throws Exception {
-    // PowerMockito.mockStatic(HttpClientUtil.class);
-    // HttpClientUtil myClass = PowerMockito.spy(new HttpClientUtil());
-    // PowerMockito.doNothing().when(myClass, HttpClientUtil.class.getMethod("delete", String.class,
-    // String.class));
-    // }
 }
