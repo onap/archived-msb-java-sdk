@@ -97,14 +97,21 @@ public class MSBServiceTest {
         Assert.assertTrue(microServiceFullInfo.getVisualRange().equals("1"));
     }
 
-    // @Test
-    // public void test_unregistration() throws Exception {
-    // String msbAddress = "127.0.0.1:10081";
-    // mockHttpDel();
-    // MSBService msbService = new MSBService();
-    // msbService.cancelMicroServiceInfo(msbAddress, "aai", "v8");
-    // }
+    @Test
+    public void test_unregistration() throws Exception {
+        String msbAddress = "127.0.0.1:10081";
+        mockHttpDel();
+        MSBService msbService = new MSBService();
+        msbService.cancelMicroServiceInfo(msbAddress, "aai", "v8");
+    }
 
+    @Test
+    public void test_unregistration_a_instance() throws Exception {
+        String msbAddress = "127.0.0.1:10081";
+        mockHttpDel();
+        MSBService msbService = new MSBService();
+        msbService.cancelMicroServiceInfo(msbAddress, "aai", "v8", "10.74.44.1", "8443");
+    }
 
     private MicroServiceFullInfo mockMicroServiceFullInfo(MicroServiceInfo info) {
         MicroServiceFullInfo serviceInfo = new MicroServiceFullInfo();
@@ -130,10 +137,8 @@ public class MSBServiceTest {
         PowerMockito.when(HttpClientUtil.httpGet(mockMSBUrl)).thenReturn(mockServiceInfoJson);
     }
 
-    // private void mockHttpDel() throws Exception {
-    // PowerMockito.mockStatic(HttpClientUtil.class);
-    // HttpClientUtil myClass = PowerMockito.spy(new HttpClientUtil());
-    // PowerMockito.doNothing().when(myClass, HttpClientUtil.class.getMethod("delete", String.class,
-    // String.class));
-    // }
+    private void mockHttpDel() throws Exception {
+        PowerMockito.mockStatic(HttpClientUtil.class);
+
+    }
 }
