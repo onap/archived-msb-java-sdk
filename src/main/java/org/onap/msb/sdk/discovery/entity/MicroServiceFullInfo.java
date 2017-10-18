@@ -20,59 +20,48 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class MicroServiceFullInfo extends Service<NodeInfo> implements Serializable {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private Set<NodeInfo> nodes;
+    // Reserved
+    private String status = "1";
 
-  //Reserved
-  private String status = "1";
-
-  public Set<NodeInfo> getNodes() {
-    return nodes;
-  }
-
-  public void setNodes(Set<NodeInfo> nodes) {
-    this.nodes = nodes;
-  }
-
-  public String getStatus() {
-    return status;
-  }
-
-  public void setStatus(String status) {
-    this.status = status;
-  }
-
-
-  public String toString() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("MicroService List:").append("\r\n");;
-    buf.append("serviceName:").append(getServiceName()).append("\r\n");
-    buf.append("version:").append(getVersion()).append("\r\n");
-    buf.append("url:").append(getUrl()).append("\r\n");
-    buf.append("protocol:").append(getProtocol()).append("\r\n");
-    buf.append("visualRange:").append(getVisualRange()).append("\r\n");
-    buf.append("nodes:").append("\r\n");
-
-    for (NodeInfo nodeInstace : this.nodes) {
-      buf.append("  nodeId-").append(nodeInstace.getNodeId()).append("\r\n");
-      buf.append("  ip-").append(nodeInstace.getIp()).append("\r\n");
-      buf.append("  port-").append(nodeInstace.getPort()).append("\r\n");
-      buf.append("  ttl-").append(nodeInstace.getTtl()).append("\r\n");
-      buf.append("  Created_at-").append(nodeInstace.getCreated_at()).append("\r\n");
-      buf.append("  Updated_at-").append(nodeInstace.getUpdated_at()).append("\r\n");
-      buf.append("  Expiration-").append(nodeInstace.getExpiration()).append("\r\n");
+    public String getStatus() {
+        return status;
     }
-    buf.append("metadata:").append("\r\n");
 
-    if (this.getMetadata() != null && this.getMetadata().size() > 0) {
-      for (KeyVaulePair keyVaulePair : this.getMetadata()) {
-        buf.append("  key-").append(keyVaulePair.getKey()).append("\r");
-        buf.append("  value-").append(keyVaulePair.getValue()).append("\r\n");
-
-      }
+    public void setStatus(String status) {
+        this.status = status;
     }
-    return buf.toString();
-  }
+
+    public String toString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append("MicroService List:").append("\r\n");;
+        buf.append("serviceName:").append(getServiceName()).append("\r\n");
+        buf.append("version:").append(getVersion()).append("\r\n");
+        buf.append("url:").append(getUrl()).append("\r\n");
+        buf.append("protocol:").append(getProtocol()).append("\r\n");
+        buf.append("visualRange:").append(getVisualRange()).append("\r\n");
+        buf.append("nodes:").append("\r\n");
+
+        for (NodeInfo nodeInstace : this.getNodes()) {
+            buf.append("  nodeId-").append(nodeInstace.getNodeId()).append("\r\n");
+            buf.append("  ip-").append(nodeInstace.getIp()).append("\r\n");
+            buf.append("  port-").append(nodeInstace.getPort()).append("\r\n");
+            buf.append("  ttl-").append(nodeInstace.getTtl()).append("\r\n");
+            buf.append("  Created_at-").append(nodeInstace.getCreated_at()).append("\r\n");
+            buf.append("  Updated_at-").append(nodeInstace.getUpdated_at()).append("\r\n");
+            buf.append("  Expiration-").append(nodeInstace.getExpiration()).append("\r\n");
+        }
+        buf.append("metadata:").append("\r\n");
+
+        if (this.getMetadata() != null && this.getMetadata().size() > 0) {
+            for (KeyVaulePair keyVaulePair : this.getMetadata()) {
+                buf.append("  key-").append(keyVaulePair.getKey()).append("\r");
+                buf.append("  value-").append(keyVaulePair.getValue()).append("\r\n");
+
+            }
+        }
+        return buf.toString();
+    }
 
 }

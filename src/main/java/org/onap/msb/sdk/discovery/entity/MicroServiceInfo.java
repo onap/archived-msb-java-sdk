@@ -23,33 +23,23 @@ import java.util.Set;
  * @date 2016-1-19
  */
 public class MicroServiceInfo extends Service<Node> implements Serializable {
-  private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-  private Set<Node> nodes;
+    public String toString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append("MicroService List:").append("\r\n");;
+        buf.append("serviceName:").append(getServiceName()).append("\r\n");
+        buf.append("version:").append(getVersion()).append("\r\n");
+        buf.append("url:").append(getUrl()).append("\r\n");
+        buf.append("protocol:").append(getProtocol()).append("\r\n");
+        buf.append("visualRange:").append(getVisualRange()).append("\r\n");
+        buf.append("nodes:").append("\r\n");
 
-  public Set<Node> getNodes() {
-    return nodes;
-  }
-
-  public void setNodes(Set<Node> nodes) {
-    this.nodes = nodes;
-  }
-
-  public String toString() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("MicroService List:").append("\r\n");;
-    buf.append("serviceName:").append(getServiceName()).append("\r\n");
-    buf.append("version:").append(getVersion()).append("\r\n");
-    buf.append("url:").append(getUrl()).append("\r\n");
-    buf.append("protocol:").append(getProtocol()).append("\r\n");
-    buf.append("visualRange:").append(getVisualRange()).append("\r\n");
-    buf.append("nodes:").append("\r\n");
-
-    for (Node nodeInstace : this.nodes) {
-      buf.append("  ip-").append(nodeInstace.getIp()).append("\r\n");
-      buf.append("  port-").append(nodeInstace.getPort()).append("\r\n");
-      buf.append("  ttl-").append(nodeInstace.getTtl()).append("\r\n");
+        for (Node nodeInstace : this.getNodes()) {
+            buf.append("  ip-").append(nodeInstace.getIp()).append("\r\n");
+            buf.append("  port-").append(nodeInstace.getPort()).append("\r\n");
+            buf.append("  ttl-").append(nodeInstace.getTtl()).append("\r\n");
+        }
+        return buf.toString();
     }
-    return buf.toString();
-  }
 }
