@@ -5,20 +5,20 @@
     <parent>
       <groupId>org.onap.oparent</groupId>
       <artifactId>oparent</artifactId>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </parent>
 
     <groupId>org.onap.msb.java-sdk</groupId>
     <artifactId>msb-java-sdk-example</artifactId>
     <name>msb-java-sdk-example</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
           <groupId>org.onap.msb.java-sdk</groupId>
             <artifactId>msb-java-sdk</artifactId>
-            <version>1.0.0-SNAPSHOT</version>
+            <version>1.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
