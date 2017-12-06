@@ -22,7 +22,6 @@ import org.onap.msb.sdk.httpclient.builder.IRetrofitObjectBuilder;
 import org.onap.msb.sdk.httpclient.conf.HttpClientConf;
 import org.onap.msb.sdk.httpclient.convert.IConverterFactoryBuilder;
 import org.onap.msb.sdk.httpclient.lb.ILoadBalanceStrategy;
-import org.onap.msb.sdk.httpclient.metric.MetricManager;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 
@@ -54,8 +53,6 @@ public class RetrofitServiceHandlerContext {
 
   private ILoadBalanceStrategy lbStrategy;
 
-
-  private MetricManager metricmanager;
 
   private IRetrofitObjectBuilder retrofitObjectBuilder;
 
@@ -112,14 +109,6 @@ public class RetrofitServiceHandlerContext {
     this.lbStrategy = lbStrategy;
   }
 
-
-  public MetricManager getMetricmanager() {
-    return metricmanager;
-  }
-
-  public void setMetricmanager(MetricManager metricmanager) {
-    this.metricmanager = metricmanager;
-  }
 
   public IRetrofitObjectBuilder getRetrofitObjectBuilder() {
     return retrofitObjectBuilder;

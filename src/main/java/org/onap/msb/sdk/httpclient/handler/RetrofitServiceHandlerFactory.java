@@ -18,6 +18,7 @@ package org.onap.msb.sdk.httpclient.handler;
 
 import java.lang.reflect.InvocationHandler;
 import java.util.List;
+import java.util.ArrayList;
 
 import org.onap.msb.sdk.httpclient.ServiceHttpEndPointBeanObject;
 import org.onap.msb.sdk.httpclient.conf.HttpClientConf;
@@ -25,12 +26,9 @@ import org.onap.msb.sdk.httpclient.exception.RetrofitServiceRuntimeException;
 import org.onap.msb.sdk.httpclient.handler.impl.ConnectionParamsBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.ConverterFactoryBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.LBBuilder;
-import org.onap.msb.sdk.httpclient.handler.impl.MetricmanagerBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.RetrofitHandlerContextBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.ServiceHttpEndPointBeanObjectBuilder;
 import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
-
-import com.google.common.collect.Lists;
 
 /**
  * @author 10071214
@@ -39,12 +37,11 @@ import com.google.common.collect.Lists;
 
 public class RetrofitServiceHandlerFactory {
 
-  private List<HandlerContextBuilder> builders = Lists.newArrayList();
+  private List<HandlerContextBuilder> builders = new ArrayList<>();
 
   public void init() {
 
     builders.add(new ServiceHttpEndPointBeanObjectBuilder());
-    builders.add(new MetricmanagerBuilder());
     builders.add(new LBBuilder());
     builders.add(new ConnectionParamsBuilder());
     builders.add(new ConverterFactoryBuilder());
