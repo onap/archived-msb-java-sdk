@@ -19,6 +19,7 @@ package org.onap.msb.sdk.httpclient.handler;
 import static org.junit.Assert.assertEquals;
 
 import java.util.List;
+import java.util.ArrayList;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -28,17 +29,13 @@ import org.onap.msb.sdk.httpclient.convert.jackson.JacksonConverterFactoryBuilde
 import org.onap.msb.sdk.httpclient.handler.impl.ConnectionParamsBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.ConverterFactoryBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.LBBuilder;
-import org.onap.msb.sdk.httpclient.handler.impl.MetricmanagerBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.RetrofitHandlerContextBuilder;
 import org.onap.msb.sdk.httpclient.handler.impl.ServiceHttpEndPointBeanObjectBuilder;
 import org.onap.msb.sdk.httpclient.lb.RoundRobinLBStrategy;
 
-import com.google.common.collect.Lists;
-
-
 public class ServiceBuilderTest {
 
-  private List<HandlerContextBuilder> builders = Lists.newArrayList();
+  private List<HandlerContextBuilder> builders = new ArrayList<>();
   private HttpClientConf globalHttpClientConf;
   
   /**
@@ -100,7 +97,6 @@ public class ServiceBuilderTest {
   
   private void init() {
     builders.add(new ServiceHttpEndPointBeanObjectBuilder());
-    builders.add(new MetricmanagerBuilder());
     builders.add(new LBBuilder());
     builders.add(new ConnectionParamsBuilder());
     builders.add(new ConverterFactoryBuilder());

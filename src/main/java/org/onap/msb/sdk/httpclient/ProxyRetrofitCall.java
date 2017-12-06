@@ -17,7 +17,6 @@ import java.io.IOException;
 import java.lang.reflect.Method;
 
 import org.onap.msb.sdk.httpclient.handler.RetrofitServiceHandler;
-import org.onap.msb.sdk.httpclient.metric.MetricObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,13 +41,8 @@ public class ProxyRetrofitCall<T extends Object> implements Call<T> {
 
   private Object[] args;
 
-  private MetricObject metricObject;
-
-
-
   public ProxyRetrofitCall(Call targetCall, RetrofitServiceHandler retrofitServiceHandler,
-      ServiceHttpEndPointObject endPoint, Object proxy, Method method, Object[] args,
-      MetricObject metricObject) {
+      ServiceHttpEndPointObject endPoint, Object proxy, Method method, Object[] args) {
     super();
     this.targetCall = targetCall;
     this.handler = retrofitServiceHandler;
@@ -56,7 +50,6 @@ public class ProxyRetrofitCall<T extends Object> implements Call<T> {
     this.proxy = proxy;
     this.method = method;
     this.args = args;
-    this.metricObject = metricObject;
   }
 
   @Override
@@ -116,7 +109,7 @@ public class ProxyRetrofitCall<T extends Object> implements Call<T> {
   public Call<T> clone() {
     // TODO Auto-generated method stub
     return new ProxyRetrofitCall(targetCall.clone(), this.handler, this.endPoint, this.proxy,
-        this.method, this.args, metricObject);
+        this.method, this.args);
   }
 
   @Override

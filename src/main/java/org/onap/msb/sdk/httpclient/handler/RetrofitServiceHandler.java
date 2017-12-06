@@ -87,8 +87,7 @@ public class RetrofitServiceHandler implements InvocationHandler {
 
     if (resultObjecct instanceof Call) {
       Call targetCall = (Call) resultObjecct;
-      return new ProxyRetrofitCall(targetCall, this, wapper.endPoint, proxy, method, args,
-          flowContext.getMetricmanager().getMetricObject(method));
+      return new ProxyRetrofitCall(targetCall, this, wapper.endPoint, proxy, method, args);
     }
     return resultObjecct;
   }
