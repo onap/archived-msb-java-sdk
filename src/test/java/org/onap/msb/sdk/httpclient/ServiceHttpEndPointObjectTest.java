@@ -13,6 +13,9 @@
  */
 package org.onap.msb.sdk.httpclient;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.onap.msb.sdk.discovery.entity.MicroServiceFullInfo;
@@ -30,12 +33,27 @@ public class ServiceHttpEndPointObjectTest {
         cloneFullInfo.setServiceName("aai");
         cloneFullInfo.setVersion("v8");
         cloneFullInfo.setVisualRange("1");
+        
+        Set<NodeInfo> nodes=new HashSet<NodeInfo>();
+        nodes.add(nodeInfo);
+        cloneFullInfo.setNodes(nodes);
 
         ServiceHttpEndPointObject endPointOjb = new ServiceHttpEndPointObject("aai", "v8", nodeInfo, cloneFullInfo);
         Assert.assertEquals(endPointOjb.getIp(), "127.0.0.1");
         Assert.assertEquals(endPointOjb.getPort(), "80");
         Assert.assertEquals(endPointOjb.getServiceName(), "aai");
         Assert.assertEquals(endPointOjb.getServiceVersion(), "v8");
+        
+        System.out.println(endPointOjb.hashCode());
+        ServiceHttpEndPointObject endPointOjb2 = new ServiceHttpEndPointObject("aai", "v8", nodeInfo, cloneFullInfo);
+        Assert.assertTrue(endPointOjb2.equals(endPointOjb));
+        
+        endPointOjb.setProtocl("HTTP");
+        endPointOjb.setNameSpace("ns");
+        System.out.println(endPointOjb.toString());
+        Assert.assertEquals("HTTP", endPointOjb.getProtocl());
+        Assert.assertEquals("ns", endPointOjb.getNameSpace());
+    
     }
 
 }

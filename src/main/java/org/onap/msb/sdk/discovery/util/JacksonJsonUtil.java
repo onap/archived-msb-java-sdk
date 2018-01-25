@@ -65,8 +65,7 @@ public class JacksonJsonUtil {
             ObjectMapper objectMapper = getMapperInstance();
             json = objectMapper.writeValueAsString(obj);
         } catch (Exception e) {
-            String errorMsg = "Class beanToJson faild";
-            throwsRouteException(errorMsg, e, "BEAN_TO_JSON_FAILD");
+            throwsRouteException("Class beanToJson faild", e, "BEAN_TO_JSON_FAILD");
         }
         return json;
     }
@@ -90,8 +89,7 @@ public class JacksonJsonUtil {
             vo = objectMapper.readValue(json, cls);
 
         } catch (Exception e) {
-            String errorMsg = cls + " JsonTobean faild:" + e.getMessage();
-            throwsRouteException(errorMsg, e, "JSON_TO_BEAN_FAILD");
+            throwsRouteException(cls + " JsonTobean faild:" + e.getMessage(), e, "JSON_TO_BEAN_FAILD");
         }
         return vo;
     }
