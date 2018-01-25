@@ -17,6 +17,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.apache.commons.lang3.StringUtils;
+import org.onap.msb.sdk.discovery.common.RouteException;
 import org.onap.msb.sdk.discovery.entity.Node;
 import org.onap.msb.sdk.discovery.entity.NodeInfo;
 
@@ -53,6 +54,39 @@ public class MsbUtil {
     nodes.add(nodeInfo);
 
     return nodes;
+  }
+  
+  public static void checkServiceName(String serviceName) throws RouteException{
+	
+	    if (StringUtils.isBlank(serviceName)) {
+	      throw new RouteException("ServiceName  can't be empty", "DATA_FORMAT_ERROR");
+	    }
+  }
+  
+  public static String checkVersion(String version) throws RouteException{
+	// 版本号格式检查
+	    if (StringUtils.isNotBlank(version)) {
+	      if (!RegExpTestUtil.versionRegExpTest(version)) {
+	        throw new RouteException("version is not a valid  format", "DATA_FORMAT_ERROR");
+	      }
+	    } else {
+	      version = "null";
+	    }
+	    
+	    return version;
+  }
+  
+  public static void checkHost(String ip,String port) throws RouteException{
+	// HOST空值和格式检查
+	    if (StringUtils.isBlank(ip)) {
+	      throw new RouteException("ip can't be empty", "DATA_FORMAT_ERROR");
+
+	    }
+
+	    if (StringUtils.isBlank(port)) {
+	      throw new RouteException("port can't be empty", "DATA_FORMAT_ERROR");
+
+	    }
   }
 
 }

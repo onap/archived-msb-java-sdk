@@ -20,6 +20,7 @@ import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.onap.msb.sdk.discovery.common.RouteException;
 import org.onap.msb.sdk.discovery.entity.NodeAddress;
 
 
@@ -44,6 +45,17 @@ public class JacksonJsonUtilTest {
             Assert.assertEquals("80", address.getPort());
         } catch (Exception e) {
             Assert.fail("Exception" + e.getMessage());
+        }
+    }
+    
+    @Test
+    public void testJsonToBean_fail() {
+        try {
+            String json = "{\"ip\":\"127.0.0.1,\"port\":\"80\"}";
+            NodeAddress address = (NodeAddress) JacksonJsonUtil.jsonToBean(json, NodeAddress.class);
+            Assert.assertEquals("127.0.0.1", address.getIp());
+        } catch (Exception e) {
+        	Assert.assertTrue(e instanceof RouteException);
         }
     }
 }

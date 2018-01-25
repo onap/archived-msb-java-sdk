@@ -55,14 +55,12 @@ public class HttpClientUtil {
       }
       res.close();
     } catch (IOException e) {
-      String errorMsg = url + ":httpPostWithJSON connect faild";
-      throwsRouteException(errorMsg, e, "POST_CONNECT_FAILD");
+      throwsRouteException(url + ":httpPostWithJSON connect faild", e, "POST_CONNECT_FAILD");
     } finally {
       try {
         httpClient.close();
       } catch (IOException e) {
-        String errorMsg = url + ":close  httpClient faild";
-        throwsRouteException(errorMsg, e, "CLOSE_CONNECT_FAILD");
+        throwsRouteException(url + ":close  httpClient faild", e, "CLOSE_CONNECT_FAILD");
       }
     }
 
@@ -93,14 +91,12 @@ public class HttpClientUtil {
 
       res.close();
     } catch (IOException e) {
-      String errorMsg = baseUrl + ":delete connect faild";
-      throwsRouteException(errorMsg, e, "DELETE_CONNECT_FAILD");
+      throwsRouteException(baseUrl + ":delete connect faild", e, "DELETE_CONNECT_FAILD");
     } finally {
       try {
         httpClient.close();
       } catch (IOException e) {
-        String errorMsg = baseUrl + ":close  httpClient faild";
-        throwsRouteException(errorMsg, e, "CLOSE_CONNECT_FAILD");
+        throwsRouteException(baseUrl + ":close  httpClient faild", e, "CLOSE_CONNECT_FAILD");
       }
     }
 
@@ -121,17 +117,14 @@ public class HttpClientUtil {
       }
       res.close();
     } catch (ClientProtocolException e) {
-      String errorMsg = url + ":httpGetWithJSON connect faild";
-      throwsRouteException(errorMsg, e, "GET_CONNECT_FAILD");
+      throwsRouteException(url + ":httpGetWithJSON connect faild", e, "GET_CONNECT_FAILD");
     } catch (IOException e) {
-      String errorMsg = url + ":httpGetWithJSON connect faild";
-      throwsRouteException(errorMsg, e, "GET_CONNECT_FAILD");
+      throwsRouteException(url + ":httpGetWithJSON connect faild", e, "GET_CONNECT_FAILD");
     } finally {
       try {
         httpClient.close();
       } catch (IOException e) {
-        String errorMsg = url + ":close  httpClient faild";
-        throwsRouteException(errorMsg, e, "CLOSE_CONNECT_FAILD");
+        throwsRouteException(url + ":close  httpClient faild", e, "CLOSE_CONNECT_FAILD");
       }
     }
 
