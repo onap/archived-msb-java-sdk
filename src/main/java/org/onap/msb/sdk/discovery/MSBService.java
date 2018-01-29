@@ -22,6 +22,7 @@ import org.onap.msb.sdk.discovery.entity.NodeAddress;
 import org.onap.msb.sdk.discovery.entity.RouteResult;
 import org.onap.msb.sdk.discovery.util.HttpClientUtil;
 import org.onap.msb.sdk.discovery.util.JacksonJsonUtil;
+import org.onap.msb.sdk.discovery.util.MsbUtil;
 import org.onap.msb.sdk.discovery.util.RegExpTestUtil;
 
 
@@ -40,19 +41,8 @@ public class MSBService {
   public MicroServiceFullInfo queryMicroServiceInfo(String msbAddress, String serviceName,
       String version) throws RouteException {
 
-    // 服务名空值检查
-    if (StringUtils.isBlank(serviceName)) {
-      throw new RouteException("ServiceName  can't be empty", "DATA_FORMAT_ERROR");
-    }
-
-    // 版本号格式检查
-    if (StringUtils.isNotBlank(version)) {
-      if (!RegExpTestUtil.versionRegExpTest(version)) {
-        throw new RouteException("version is not a valid  format", "DATA_FORMAT_ERROR");
-      }
-    } else {
-      version = "null";
-    }
+	  MsbUtil.checkServiceName(serviceName);
+	  version=MsbUtil.checkVersion(version);    
 
     MicroServiceFullInfo microServiceInfo = null;
 
@@ -100,9 +90,7 @@ public class MSBService {
         || StringUtils.isBlank(microServiceInfo.getProtocol())
         || microServiceInfo.getNodes().size() == 0) {
 
-      throw new RouteException(
-          "register MicroServiceInfo FAIL： Some MicroServiceInfo's required fields are empty",
-          "DATA_FORMAT_ERROR");
+      throw new RouteException("register MicroServiceInfo FAIL： Some MicroServiceInfo's required fields are empty","DATA_FORMAT_ERROR");
 
     }
 
@@ -110,9 +98,7 @@ public class MSBService {
     // 版本号格式检查
     if (StringUtils.isNotBlank(microServiceInfo.getVersion())) {
       if (!RegExpTestUtil.versionRegExpTest(microServiceInfo.getVersion())) {
-        throw new RouteException("register MicroServiceInfo FAIL：version is not a valid  format",
-            "DATA_FORMAT_ERROR");
-
+        throw new RouteException("register MicroServiceInfo FAIL：version is not a valid  format","DATA_FORMAT_ERROR");
       }
     }
 
@@ -120,8 +106,7 @@ public class MSBService {
 
     // 服务协议取值范围检查
     if (!RouteConst.checkExistProtocol(microServiceInfo.getProtocol().trim())) {
-      throw new RouteException("register MicroServiceInfo FAIL：Protocol is wrong,value range:("
-          + RouteConst.listProtocol() + ")", "DATA_FORMAT_ERROR");
+      throw new RouteException("register MicroServiceInfo FAIL：Protocol is wrong,value range:("+ RouteConst.listProtocol() + ")", "DATA_FORMAT_ERROR");
 
     }
 
@@ -154,23 +139,9 @@ public class MSBService {
       throws RouteException {
     RouteResult result = new RouteResult();
 
-    // 服务名空值检查
-    if (StringUtils.isBlank(serviceName)) {
-      throw new RouteException("cancel MicroServiceInfo FAIL：ServiceName  can't be empty",
-          "DATA_FORMAT_ERROR");
-
-    }
-
-    // 版本号格式检查
-    if (StringUtils.isNotBlank(version)) {
-      if (!RegExpTestUtil.versionRegExpTest(version)) {
-        throw new RouteException("cancel MicroServiceInfo FAIL：version is not a valid  format",
-            "DATA_FORMAT_ERROR");
-
-      }
-    } else {
-      version = "null";
-    }
+    MsbUtil.checkServiceName(serviceName);
+    version=MsbUtil.checkVersion(version);  
+    
 
 
     String url =
@@ -203,35 +174,12 @@ public class MSBService {
 
     RouteResult result = new RouteResult();
 
-    // 服务名空值检查
-    if (StringUtils.isBlank(serviceName)) {
-      throw new RouteException("cancel MicroServiceInfo FAIL：ServiceName  can't be empty",
-          "DATA_FORMAT_ERROR");
+    MsbUtil.checkServiceName(serviceName);
+    version=MsbUtil.checkVersion(version);  
+    
+    MsbUtil.checkHost(ip,port);  
 
-    }
-
-
-    // HOST空值和格式检查
-    if (StringUtils.isBlank(ip)) {
-      throw new RouteException("cancel MicroServiceInfo FAIL：ip can't be empty",
-          "DATA_FORMAT_ERROR");
-    }
-
-    if (StringUtils.isBlank(port)) {
-      throw new RouteException("cancel MicroServiceInfo FAIL：port can't be empty",
-          "DATA_FORMAT_ERROR");
-
-    }
-
-    // 版本号格式检查
-    if (StringUtils.isNotBlank(version)) {
-      if (!RegExpTestUtil.versionRegExpTest(version)) {
-        throw new RouteException("cancel MicroServiceInfo FAIL：version is not a valid  format",
-            "DATA_FORMAT_ERROR");
-      }
-    } else {
-      version = "null";
-    }
+   
 
 
     String url =
@@ -263,32 +211,9 @@ public class MSBService {
   public NodeAddress healthCheckbyTTL(String msbAddress, String serviceName, String version,
       String ip, String port) throws RouteException {
 
-    // 服务名空值检查
-    if (StringUtils.isBlank(serviceName)) {
-      throw new RouteException("ServiceName  can't be empty", "DATA_FORMAT_ERROR");
-    }
-
-    // 版本号格式检查
-    if (StringUtils.isNotBlank(version)) {
-      if (!RegExpTestUtil.versionRegExpTest(version)) {
-        throw new RouteException("version is not a valid  format", "DATA_FORMAT_ERROR");
-      }
-    } else {
-      version = "null";
-    }
-
-
-    // HOST空值和格式检查
-    if (StringUtils.isBlank(ip)) {
-      throw new RouteException("healthCheck by TTL FAIL：ip can't be empty", "DATA_FORMAT_ERROR");
-
-    }
-
-    if (StringUtils.isBlank(port)) {
-      throw new RouteException("healthCheck by TTL FAIL：port can't be empty", "DATA_FORMAT_ERROR");
-
-    }
-
+	  MsbUtil.checkServiceName(serviceName);
+	  version=MsbUtil.checkVersion(version);  
+	  MsbUtil.checkHost(ip,port);  
 
 
     NodeAddress checkNode = new NodeAddress(ip, port);

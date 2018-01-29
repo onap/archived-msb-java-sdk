@@ -74,7 +74,4 @@ public class RegExpTestUtil {
 
 
 
-    public static void main(String[] args) {
-        System.out.println(urlRegExpTest("/"));
-    }
 }
