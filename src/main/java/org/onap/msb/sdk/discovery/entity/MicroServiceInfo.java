@@ -33,6 +33,7 @@ public class MicroServiceInfo extends Service<Node> implements Serializable {
         buf.append("url:").append(getUrl()).append("\r\n");
         buf.append("protocol:").append(getProtocol()).append("\r\n");
         buf.append("visualRange:").append(getVisualRange()).append("\r\n");
+        buf.append("enable_ssl:").append(isEnable_ssl()).append("\r\n");
         buf.append("nodes:").append("\r\n");
 
         for (Node nodeInstace : this.getNodes()) {
