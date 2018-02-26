@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright 2017 ZTE, Inc. and others.
+ * Copyright 2017-2018 ZTE, Inc. and others.
  * 
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -21,164 +21,194 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Service<T> implements Serializable {
-  private static final long serialVersionUID = 1L;
- 
-  private String serviceName;
+    private static final long serialVersionUID = 1L;
 
-  private String version = "";
-  
-  private String url = "";
-  
-  //REST、UI
-  private String protocol = "";
-  //0: External 1: Internal
-  private String visualRange = "1";
+    private String serviceName;
 
-  private String lb_policy = "";
+    private String version = "";
 
-  private String path = "";
+    private String url = "";
 
-  private Set<T> nodes;
+    // REST、UI
+    private String protocol = "";
+    // 0: External 1: Internal
+    private String visualRange = "1";
 
-  private List<KeyVaulePair> metadata;
+    private String lb_policy = "";
 
-  public String getPath() {
-    return path;
-  }
+    private String path = "";
 
-  /**
-   * The customized publish path of this service.
-   * If this parameter is specified when registering the service, the service will be published to api gateway under this path.
-   * Otherwise, the service will be published to api gateway using a fixed format: api/{serviceName} /{version}.
-   * Do not specific a path unless you know what you're doing.
-   * @param path
-   */
-  public void setPath(String path) {
-    this.path = path;
-  }
+    private Set<T> nodes;
 
-  /**
-   * Load balancing method used when MSB routes the service requests. Currently, Round robin and IP hash are supported.
-   * @return
-   */
-  public String getLb_policy() {
-    return lb_policy;
-  }
+    private List<KeyVaulePair> metadata;
 
-  /**
-   * Load balancing method used when MSB routes the service requests. Currently, Round robin and IP hash are supported.
-   * @param lb_policy (round-robin,ip_hash)
-   * @return void
-   */
-  public void setLb_policy(String lb_policy) {
-    this.lb_policy = lb_policy;
-  }
+    private boolean enable_ssl = false;
 
-  public List<KeyVaulePair> getMetadata() {
-    return metadata;
-  }
+    /**
+     * @return the enable_ssl
+     */
+    public boolean isEnable_ssl() {
+        return enable_ssl;
+    }
 
-  public void setMetadata(List<KeyVaulePair> metadata) {
-    this.metadata = metadata;
-  }
+    /**
+     * @param enable_ssl the enable_ssl to set
+     */
+    public void setEnable_ssl(boolean enable_ssl) {
+        this.enable_ssl = enable_ssl;
+    }
 
-  /**
-   * The service instance nodes
-   */
-  public Set<T> getNodes() {
-    return nodes;
-  }
+    public String getPath() {
+        return path;
+    }
 
-  /**
-   * The service instance nodes
-   * @param nodes
-   * @return void
-   */
-  public void setNodes(Set<T> nodes) {
-    this.nodes = nodes;
-  }
+    /**
+     * The customized publish path of this service. If this parameter is specified when registering
+     * the service, the service will be published to api gateway under this path. Otherwise, the
+     * service will be published to api gateway using a fixed format: api/{serviceName} /{version}.
+     * Do not specific a path unless you know what you're doing.
+     * 
+     * @param path
+     */
+    public void setPath(String path) {
+        this.path = path;
+    }
 
-  /**
-   * An unique name of the service, it should be constant so the service consumer can access the service.
-   */
-  public String getServiceName() {
-    return serviceName;
-  }
+    /**
+     * Load balancing method used when MSB routes the service requests. Currently, Round robin and
+     * IP hash are supported.
+     * 
+     * @return
+     */
+    public String getLb_policy() {
+        return lb_policy;
+    }
 
-  /**
-   * An unique name of the service, it should be constant so the service consumer can access the service.
-   * @param serviceName
-   */
-  public void setServiceName(String serviceName) {
-    this.serviceName = serviceName;
-  }
+    /**
+     * Load balancing method used when MSB routes the service requests. Currently, Round robin and
+     * IP hash are supported.
+     * 
+     * @param lb_policy (round-robin,ip_hash)
+     * @return void
+     */
+    public void setLb_policy(String lb_policy) {
+        this.lb_policy = lb_policy;
+    }
 
-  /**
-   * Service version. Only the major version of service is used in the URI.
-   * @return
-   */
-  public String getVersion() {
-    return version;
-  }
+    public List<KeyVaulePair> getMetadata() {
+        return metadata;
+    }
 
-  /**
-   * Service version. Only the major version of service is used in the URI.
-   * @param version
-   */
-  public void setVersion(String version) {
-    this.version = version;
-  }
+    public void setMetadata(List<KeyVaulePair> metadata) {
+        this.metadata = metadata;
+    }
 
-  /**
-   * The actual URL of the service to be registered.
-   * @return
-   */
-  public String getUrl() {
-    return url;
-  }
+    /**
+     * The service instance nodes
+     */
+    public Set<T> getNodes() {
+        return nodes;
+    }
 
-  /**
-   * The actual URL of the service to be registered.
-   * @param url
-   * @return void
-   */
-  public void setUrl(String url) {
-    this.url = url;
-  }
+    /**
+     * The service instance nodes
+     * 
+     * @param nodes
+     * @return void
+     */
+    public void setNodes(Set<T> nodes) {
+        this.nodes = nodes;
+    }
 
-  /**
-   * supported protocols: 'REST', 'UI'
-   * @return
-   */
-  public String getProtocol() {
-    return protocol;
-  }
+    /**
+     * An unique name of the service, it should be constant so the service consumer can access the
+     * service.
+     */
+    public String getServiceName() {
+        return serviceName;
+    }
 
-  /**
-   * supported protocols: 'REST', 'UI'
-   * @param protocol
-   */
-  public void setProtocol(String protocol) {
-    this.protocol = protocol;
-  }
+    /**
+     * An unique name of the service, it should be constant so the service consumer can access the
+     * service.
+     * 
+     * @param serviceName
+     */
+    public void setServiceName(String serviceName) {
+        this.serviceName = serviceName;
+    }
 
-  /**
-   * Visibility of the service. 
-   * External(can be accessed by external systems):0
-   * Internal(can only be accessed by ONAP microservices):1
-   */
-  public String getVisualRange() {
-    return visualRange;
-  }
+    /**
+     * Service version. Only the major version of service is used in the URI.
+     * 
+     * @return
+     */
+    public String getVersion() {
+        return version;
+    }
 
-  /**
-   * Visibility of the service. 
-   * External(can be accessed by external systems):0
-   * Internal(can only be accessed by ONAP microservices):1
-   * @param visualRange
-   */
-  public void setVisualRange(String visualRange) {
-    this.visualRange = visualRange;
-  }
+    /**
+     * Service version. Only the major version of service is used in the URI.
+     * 
+     * @param version
+     */
+    public void setVersion(String version) {
+        this.version = version;
+    }
+
+    /**
+     * The actual URL of the service to be registered.
+     * 
+     * @return
+     */
+    public String getUrl() {
+        return url;
+    }
+
+    /**
+     * The actual URL of the service to be registered.
+     * 
+     * @param url
+     * @return void
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
+     * supported protocols: 'REST', 'UI'
+     * 
+     * @return
+     */
+    public String getProtocol() {
+        return protocol;
+    }
+
+    /**
+     * supported protocols: 'REST', 'UI'
+     * 
+     * @param protocol
+     */
+    public void setProtocol(String protocol) {
+        this.protocol = protocol;
+    }
+
+    /**
+     * Visibility of the service. External(can be accessed by external systems):0 Internal(can only
+     * be accessed by ONAP microservices):1
+     */
+    public String getVisualRange() {
+        return visualRange;
+    }
+
+    /**
+     * Visibility of the service. External(can be accessed by external systems):0 Internal(can only
+     * be accessed by ONAP microservices):1
+     * 
+     * @param visualRange
+     */
+    public void setVisualRange(String visualRange) {
+        this.visualRange = visualRange;
+    }
 
 }
