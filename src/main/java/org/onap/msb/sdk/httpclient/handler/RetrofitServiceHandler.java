@@ -28,7 +28,7 @@ import org.onap.msb.sdk.httpclient.lb.LoadBalanceContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import jersey.repackaged.com.google.common.collect.Lists;
+import com.google.common.collect.Lists;
 import retrofit2.Call;
 
 /**
@@ -37,125 +37,123 @@ import retrofit2.Call;
  */
 public class RetrofitServiceHandler implements InvocationHandler {
 
-  private final static Logger logger = LoggerFactory.getLogger(RetrofitServiceHandler.class);
-  private static long periodTime = 60;
+    private final static Logger logger = LoggerFactory.getLogger(RetrofitServiceHandler.class);
+    private static long periodTime = 60;
 
-  static {
-    try {
-      String periodStr = System.getenv("retrofit_route_cache_refresh_period");
-      periodTime = periodStr != null ? Long.valueOf(periodStr) : 60;
-      logger.info("retrofit_route_cache_refresh_period:" + periodTime);
-    } catch (Exception e) {
-      logger.warn("", e);
+    static {
+        try {
+            String periodStr = System.getenv("retrofit_route_cache_refresh_period");
+            periodTime = periodStr != null ? Long.valueOf(periodStr) : 60;
+            logger.info("retrofit_route_cache_refresh_period:" + periodTime);
+        } catch (Exception e) {
+            logger.warn("", e);
+        }
+
     }
 
-  }
 
 
+    private RetrofitServiceHandlerContext flowContext;
 
-  private RetrofitServiceHandlerContext flowContext;
+    private AtomicReference<Map<ServiceHttpEndPointObject, Object>> endPointToRetrofitRef = new AtomicReference();
 
-  private AtomicReference<Map<ServiceHttpEndPointObject, Object>> endPointToRetrofitRef =
-      new AtomicReference();
-
-  public RetrofitServiceHandler(RetrofitServiceHandlerContext flowContext) {
-    super();
-    this.flowContext = flowContext;
-    logger.info("retrofit_route_cache_refresh_period:" + periodTime);
-  }
-
-
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method,
-   * java.lang.Object[])
-   */
-  @Override
-  public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-
-    Object retrofitObject = null;
-    ServiceHttpEndPointObjectWapper wapper = null;
-
-    updateMsbInfo();
-    wapper = selectRetrofitObjectByLBStrategy(
-        flowContext.getRetrofitObjectBuilder().buildRetrofitObject(endPointToRetrofitRef, null),
-        method, args);
-    retrofitObject = wapper.retrofitObject;
-
-    Object resultObjecct = method.invoke(retrofitObject, args);
-
-    if (resultObjecct instanceof Call) {
-      Call targetCall = (Call) resultObjecct;
-      return new ProxyRetrofitCall(targetCall, this, wapper.endPoint, proxy, method, args);
+    public RetrofitServiceHandler(RetrofitServiceHandlerContext flowContext) {
+        super();
+        this.flowContext = flowContext;
+        logger.info("retrofit_route_cache_refresh_period:" + periodTime);
     }
-    return resultObjecct;
-  }
 
 
-  public Object reInvoke(Object proxy, Method method, Object[] args,
-      ServiceHttpEndPointObject endPoint) throws Throwable {
+    /*
+     * (non-Javadoc)
+     * 
+     * @see java.lang.reflect.InvocationHandler#invoke(java.lang.Object, java.lang.reflect.Method,
+     * java.lang.Object[])
+     */
+    @Override
+    public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 
+        Object retrofitObject = null;
+        ServiceHttpEndPointObjectWapper wapper = null;
 
-    Object retrofitObject = null;
-    ServiceHttpEndPointObjectWapper wapper = null;
+        updateMsbInfo();
+        wapper = selectRetrofitObjectByLBStrategy(
+                        flowContext.getRetrofitObjectBuilder().buildRetrofitObject(endPointToRetrofitRef, null), method,
+                        args);
+        retrofitObject = wapper.retrofitObject;
 
-    updateMsbInfo();
+        Object resultObjecct = method.invoke(retrofitObject, args);
 
-    Map<ServiceHttpEndPointObject, Object> serviceHttpEndPointObjectMap =
-        flowContext.getRetrofitObjectBuilder().buildRetrofitObject(endPointToRetrofitRef, endPoint);
-
-    wapper = selectRetrofitObjectByLBStrategy(serviceHttpEndPointObjectMap, method, args);
-
-
-
-    retrofitObject = wapper.retrofitObject;
-
-    Object resultObjecct = method.invoke(retrofitObject, args);
-
-    return resultObjecct;
-
-  }
-
-  private void updateMsbInfo() {
-
-
-
-    if (System.currentTimeMillis() - flowContext.getLastUpdateMsbTime() > periodTime * 1000) {
-      clean();
+        if (resultObjecct instanceof Call) {
+            Call targetCall = (Call) resultObjecct;
+            return new ProxyRetrofitCall(targetCall, this, wapper.endPoint, proxy, method, args);
+        }
+        return resultObjecct;
     }
-  }
-
-  public void clean() {
-    endPointToRetrofitRef.set(null);
-  }
 
 
-  private ServiceHttpEndPointObjectWapper selectRetrofitObjectByLBStrategy(
-      Map<ServiceHttpEndPointObject, Object> srvEndPointToRetrofit, Method method, Object[] args)
-      throws RetrofitServiceRuntimeException {
+    public Object reInvoke(Object proxy, Method method, Object[] args, ServiceHttpEndPointObject endPoint)
+                    throws Throwable {
 
-    LoadBalanceContext ctx = new LoadBalanceContext();
-    ctx.setEndPoints(Lists.newArrayList(srvEndPointToRetrofit.keySet()));
-    ctx.setArgs(args);
-    ctx.setMethod(method);
-    ServiceHttpEndPointObject endPoint = flowContext.getLbStrategy().chooseEndPointObject(ctx);
-    return new ServiceHttpEndPointObjectWapper(endPoint, srvEndPointToRetrofit.get(endPoint));
-  }
+
+        Object retrofitObject = null;
+        ServiceHttpEndPointObjectWapper wapper = null;
+
+        updateMsbInfo();
+
+        Map<ServiceHttpEndPointObject, Object> serviceHttpEndPointObjectMap =
+                        flowContext.getRetrofitObjectBuilder().buildRetrofitObject(endPointToRetrofitRef, endPoint);
+
+        wapper = selectRetrofitObjectByLBStrategy(serviceHttpEndPointObjectMap, method, args);
+
+
+
+        retrofitObject = wapper.retrofitObject;
+
+        Object resultObjecct = method.invoke(retrofitObject, args);
+
+        return resultObjecct;
+
+    }
+
+    private void updateMsbInfo() {
+
+
+
+        if (System.currentTimeMillis() - flowContext.getLastUpdateMsbTime() > periodTime * 1000) {
+            clean();
+        }
+    }
+
+    public void clean() {
+        endPointToRetrofitRef.set(null);
+    }
+
+
+    private ServiceHttpEndPointObjectWapper selectRetrofitObjectByLBStrategy(
+                    Map<ServiceHttpEndPointObject, Object> srvEndPointToRetrofit, Method method, Object[] args)
+                    throws RetrofitServiceRuntimeException {
+
+        LoadBalanceContext ctx = new LoadBalanceContext();
+        ctx.setEndPoints(Lists.newArrayList(srvEndPointToRetrofit.keySet()));
+        ctx.setArgs(args);
+        ctx.setMethod(method);
+        ServiceHttpEndPointObject endPoint = flowContext.getLbStrategy().chooseEndPointObject(ctx);
+        return new ServiceHttpEndPointObjectWapper(endPoint, srvEndPointToRetrofit.get(endPoint));
+    }
 
 }
 
 
 class ServiceHttpEndPointObjectWapper {
 
-  protected ServiceHttpEndPointObject endPoint;
-  protected Object retrofitObject;
+    protected ServiceHttpEndPointObject endPoint;
+    protected Object retrofitObject;
 
-  public ServiceHttpEndPointObjectWapper(ServiceHttpEndPointObject endPoint,
-      Object retrofitObject) {
-    super();
-    this.endPoint = endPoint;
-    this.retrofitObject = retrofitObject;
-  }
+    public ServiceHttpEndPointObjectWapper(ServiceHttpEndPointObject endPoint, Object retrofitObject) {
+        super();
+        this.endPoint = endPoint;
+        this.retrofitObject = retrofitObject;
+    }
 
 }
