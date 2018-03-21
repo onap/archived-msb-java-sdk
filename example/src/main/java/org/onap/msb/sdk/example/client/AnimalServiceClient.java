@@ -23,6 +23,6 @@ import retrofit2.http.Path;
 @ServiceHttpEndPoint(serviceName = "animals", serviceVersion = "v1")
 public interface AnimalServiceClient {
 
-  @GET("animals/{name}")
-  Call<Animal> queryAnimal(@Path("name") String name);
+    @GET("animals/{name}")
+    Call<Animal> queryAnimal(@Path("name") String name);
 }
