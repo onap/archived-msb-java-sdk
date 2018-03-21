@@ -39,7 +39,7 @@ public class MSBServiceClientTest {
                     "http://127.0.0.1:10081/api/microservices/v1/services/aai/version/v8";
 
     private static final String MOCK_REG_SERVICE_JSON =
-                    "{\"serviceName\":\"aai\",\"version\":\"v8\",\"url\":\"/aai/v8\",\"protocol\":\"REST\",\"visualRange\":\"1\",\"lb_policy\":\"\",\"path\":\"/aai/v8\",\"nodes\":[{\"ip\":\"10.74.44.1\",\"port\":\"8443\",\"ttl\":\"\"}],\"metadata\":null,\"enable_ssl\":false}";
+                    "{\"serviceName\":\"aai\",\"version\":\"v8\",\"url\":\"/aai/v8\",\"protocol\":\"REST\",\"visualRange\":\"1\",\"lb_policy\":\"\",\"path\":\"/aai/v8\",\"nodes\":[{\"ip\":\"10.74.44.1\",\"port\":\"8443\",\"ttl\":\"\",\"checkType\":\"HTTP\",\"checkUrl\":\"\",\"checkInterval\":\"10s\",\"checkTimeOut\":\"10s\"}],\"metadata\":null,\"enable_ssl\":false}";
 
     @Test
     public void test_registration_update_true() throws RouteException {

@@ -24,32 +24,31 @@ import org.onap.msb.sdk.httpclient.msb.MSBServiceClient;
 
 public class MsbHelper {
 
-  private MSBServiceClient msbClient;
+    private MSBServiceClient msbClient;
 
-  public MsbHelper(MSBServiceClient msbClient) {
-    super();
-    this.msbClient = msbClient;
-  }
-
-
-
-  public void registerMsb() throws Exception {
+    public MsbHelper(MSBServiceClient msbClient) {
+        super();
+        this.msbClient = msbClient;
+    }
 
 
-    MicroServiceInfo msinfo = new MicroServiceInfo();
 
-    msinfo.setServiceName("animals");
-    msinfo.setVersion("v1");
-    msinfo.setUrl("/api/rpc/v1");
-    msinfo.setProtocol("REST");
-    msinfo.setVisualRange("0|1");
-    
-    Set<Node> nodes = new HashSet<>();
-    Node node1 = new Node();
-    node1.setIp(InetAddress.getLocalHost().getHostAddress());
-    node1.setPort("9090");
-    nodes.add(node1);
-    msinfo.setNodes(nodes);
-    msbClient.registerMicroServiceInfo(msinfo, false);
-  }
+    public void registerMsb() throws Exception {
+        MicroServiceInfo msinfo = new MicroServiceInfo();
+        msinfo.setServiceName("animals");
+        msinfo.setVersion("v1");
+        msinfo.setUrl("/api/rpc/v1");
+        msinfo.setProtocol("REST");
+        msinfo.setVisualRange("0|1");
+
+        Set<Node> nodes = new HashSet<>();
+        Node node1 = new Node();
+        node1.setIp(InetAddress.getLocalHost().getHostAddress());
+        node1.setPort("9090");
+        node1.setCheckType("HTTP");
+        node1.setCheckUrl("http://10.74.57.151:9090/api/rpc/v1/animals/panda");
+        nodes.add(node1);
+        msinfo.setNodes(nodes);
+        msbClient.registerMicroServiceInfo(msinfo, false);
+    }
 }

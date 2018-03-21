@@ -40,8 +40,8 @@ public class ExampleApp extends Application<Config> {
     public void run(Config configuration, Environment environment) throws Exception {
         // For real use case, MSB discovery IP and Port should come from configuration file instead
         // of hard code here
-        String msb_discovery_ip = "127.0.0.1";
-        int msb_discovery_port = 10081;
+        String msb_discovery_ip = "10.96.33.44";
+        int msb_discovery_port = 30081;
 
         environment.jersey().register(new AnimalResource());
 

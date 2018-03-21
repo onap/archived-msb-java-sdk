@@ -29,8 +29,8 @@ public class ExampleClient {
     public static void main(String[] args) throws IOException {
         // For real use case, MSB discovery IP and Port should come from configuration file instead
         // of hard code here
-        String msb_discovery_ip = "127.0.0.1";
-        int msb_discovery_port = 10081;
+        String msb_discovery_ip = "10.96.33.44";
+        int msb_discovery_port = 30080;
 
         MSBServiceClient msbClient = new MSBServiceClient(msb_discovery_ip, msb_discovery_port);
 
