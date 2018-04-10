@@ -36,10 +36,10 @@ public class Node implements Serializable {
     private String checkUrl = "";
 
     // TCP or HTTP health check Interval,Unit: second", example = "10s"
-    private String checkInterval = "10s";
+    private String checkInterval;
 
     // TCP or HTTP health check TimeOut,Unit: second", example = "10s"
-    private String checkTimeOut = "10s";
+    private String checkTimeOut;
 
 
     public String getIp() {
