@@ -14,7 +14,7 @@
 package org.onap.msb.sdk.discovery.entity;
 
 import java.io.Serializable;
-import java.util.Set;
+
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
