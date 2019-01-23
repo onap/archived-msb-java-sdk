@@ -21,13 +21,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class HttpClientConf {
 
   @JsonProperty
-  private long readTimeout = 180 * 1000;
+  private long readTimeout = Long.valueOf(180 * 1000);
 
   @JsonProperty
-  private long connectTimeout = 20 * 1000;
+  private long connectTimeout = Long.valueOf(20 * 1000);
 
   @JsonProperty
-  private long writeTimeout = 10 * 1000;
+  private long writeTimeout = Long.valueOf(10 * 1000);
 
 
   public long getReadTimeout() {
