@@ -14,7 +14,6 @@
 package org.onap.msb.sdk.discovery.entity;
 
 import java.io.Serializable;
-import java.util.Set;
 
 /**
  * @ClassName: MicroServiceInfo Bean
@@ -26,7 +25,7 @@ public class MicroServiceInfo extends Service<Node> implements Serializable {
     private static final long serialVersionUID = 1L;
 
     public String toString() {
-        StringBuffer buf = new StringBuffer();
+    	StringBuilder buf = new StringBuilder();
         buf.append("MicroService List:").append("\r\n");;
         buf.append("serviceName:").append(getServiceName()).append("\r\n");
         buf.append("version:").append(getVersion()).append("\r\n");
