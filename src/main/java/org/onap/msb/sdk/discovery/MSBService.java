@@ -1,11 +1,11 @@
 /*******************************************************************************
  * Copyright 2017 ZTE, Inc. and others.
- * 
+ *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
- * 
+ *
  * http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software distributed under the License
  * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
  * or implied. See the License for the specific language governing permissions and limitations under
@@ -31,10 +31,10 @@ public class MSBService {
 
   /**
    * @Title queryMicroServiceInfo
-   * @Description TODO(查询单个微服务)
-   * @param msbAddress 微服务服务器地址( ip:port 或 域名地址)
-   * @param serviceName 服务名[必填,若自定义服务名包含/，用*代替]
-   * @param version 版本号[若无版本号，传空字符串]
+   * @Description Get information of a service
+   * @param msbAddress MSB Address
+   * @param serviceName
+   * @param version null if no version
    * @throws RouteException
    * @return MicroServiceFullInfo
    */
@@ -42,7 +42,7 @@ public class MSBService {
       String version) throws RouteException {
 
 	  MsbUtil.checkServiceName(serviceName);
-	  version=MsbUtil.checkVersion(version);    
+	  version=MsbUtil.checkVersion(version);
 
     MicroServiceFullInfo microServiceInfo = null;
 
@@ -61,9 +61,9 @@ public class MSBService {
 
   /**
    * @Title registerMicroServiceInfo
-   * @Description TODO(注册微服务-默认追加方式)
-   * @param msbAddress 微服务服务器地址( ip:port 或 域名地址)
-   * @param microServiceInfo 微服务注册实体类
+   * @Description
+   * @param msbAddress
+   * @param microServiceInfo
    * @throws RouteException
    * @return MicroServiceFullInfo
    */
@@ -75,17 +75,16 @@ public class MSBService {
 
   /**
    * @Title registerMicroServiceInfo
-   * @Description TODO(注册微服务)
-   * @param msbAddress 微服务服务器地址( ip:port 或 域名地址)
-   * @param microServiceInfo 微服务注册实体类
-   * @param createOrUpdate true：新增或追加更新 ,false：重新添加
+   * @Description
+   * @param msbAddress
+   * @param microServiceInfo
+   * @param createOrUpdate true
    * @throws RouteException
    * @return MicroServiceFullInfo
    */
   public MicroServiceFullInfo registerMicroServiceInfo(String msbAddress,
       MicroServiceInfo microServiceInfo, boolean createOrUpdate) throws RouteException {
 
-    // 必填项空值检查
     if (StringUtils.isBlank(microServiceInfo.getServiceName())
         || StringUtils.isBlank(microServiceInfo.getProtocol())
         || microServiceInfo.getNodes().size() == 0) {
@@ -95,7 +94,6 @@ public class MSBService {
     }
 
 
-    // 版本号格式检查
     if (StringUtils.isNotBlank(microServiceInfo.getVersion())) {
       if (!RegExpTestUtil.versionRegExpTest(microServiceInfo.getVersion())) {
         throw new RouteException("register MicroServiceInfo FAIL：version is not a valid  format","DATA_FORMAT_ERROR");
@@ -104,7 +102,6 @@ public class MSBService {
 
 
 
-    // 服务协议取值范围检查
     if (!RouteConst.checkExistProtocol(microServiceInfo.getProtocol().trim())) {
       throw new RouteException("register MicroServiceInfo FAIL：Protocol is wrong,value range:("+ RouteConst.listProtocol() + ")", "DATA_FORMAT_ERROR");
 
@@ -128,10 +125,10 @@ public class MSBService {
 
   /**
    * @Title cancelMicroServiceInfo
-   * @Description TODO(注销全部微服务)
-   * @param msbAddress 微服务服务器地址( ip:port 或 域名地址)
-   * @param serviceName 服务名[必填,若自定义服务名包含/，用*代替]
-   * @param version 版本号[若无版本号，传空字符串]
+   * @Description deregister a service
+   * @param msbAddress
+   * @param serviceName
+   * @param version
    * @throws RouteException
    * @return RouteResult
    */
@@ -140,8 +137,8 @@ public class MSBService {
     RouteResult result = new RouteResult();
 
     MsbUtil.checkServiceName(serviceName);
-    version=MsbUtil.checkVersion(version);  
-    
+    version=MsbUtil.checkVersion(version);
+
 
 
     String url =
@@ -160,10 +157,10 @@ public class MSBService {
 
   /**
    * @Title cancelMicroServiceInfo
-   * @Description TODO(注销单个微服务)
-   * @param msbAddress 微服务服务器地址( ip:port 或 域名地址)
-   * @param serviceName 服务名[必填,若自定义服务名包含/，用*代替]
-   * @param version 版本号[若无版本号，传空字符串]
+   * @Description deregister a service
+   * @param msbAddress
+   * @param serviceName
+   * @param version
    * @param ip
    * @param port
    * @throws RouteException
@@ -175,12 +172,7 @@ public class MSBService {
     RouteResult result = new RouteResult();
 
     MsbUtil.checkServiceName(serviceName);
-    version=MsbUtil.checkVersion(version);  
-    
-    MsbUtil.checkHost(ip,port);  
-
-   
-
+    version=MsbUtil.checkVersion(version);
 
     String url =
         (new StringBuilder().append("http://").append(msbAddress).append(RouteConst.MSB_ROUTE_URL))
@@ -199,12 +191,12 @@ public class MSBService {
 
   /**
    * @Title healthCheckbyTTL
-   * @Description TODO(请求服务实例TTL健康检查)
+   * @Description
    * @param msbAddress
-   * @param serviceName 服务名
-   * @param version 版本号[若无版本号，传空字符串]
-   * @param ip 实例IP
-   * @param port 实例端口
+   * @param serviceName
+   * @param version
+   * @param ip
+   * @param port
    * @throws RouteException
    * @return CheckNode
    */
@@ -212,8 +204,8 @@ public class MSBService {
       String ip, String port) throws RouteException {
 
 	  MsbUtil.checkServiceName(serviceName);
-	  version=MsbUtil.checkVersion(version);  
-	  MsbUtil.checkHost(ip,port);  
+	  version=MsbUtil.checkVersion(version);
+	  MsbUtil.checkHost(ip,port);
 
 
     NodeAddress checkNode = new NodeAddress(ip, port);
