@@ -28,6 +28,7 @@ import org.powermock.modules.junit4.PowerMockRunner;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({HttpClientUtil.class})
+@PowerMockIgnore("jdk.internal.reflect.*")
 public class MSBServiceClientTest {
     private static final String MOCK_MSB_URL_REG_UPDATE_TRUE =
                     "http://127.0.0.1:10081/api/microservices/v1/services?createOrUpdate=true";
