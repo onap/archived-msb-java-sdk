@@ -29,9 +29,12 @@ import org.onap.msb.sdk.discovery.util.JacksonJsonUtil;
 import org.powermock.api.mockito.PowerMockito;
 import org.powermock.core.classloader.annotations.PrepareForTest;
 import org.powermock.modules.junit4.PowerMockRunner;
+import org.powermock.core.classloader.annotations.PowerMockIgnore;
 
 @RunWith(PowerMockRunner.class)
 @PrepareForTest({HttpClientUtil.class})
+@PowerMockIgnore("jdk.internal.reflect.*")
+
 public class MSBServiceTest {
     private static final String MOCK_MSB_URL_REG_UPDATE_TRUE =
                     "http://127.0.0.1:10081/api/microservices/v1/services?createOrUpdate=true";
