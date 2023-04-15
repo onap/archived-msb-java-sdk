@@ -1,0 +1,5 @@
+---
+distribution_type: maven
+log_dir: msb-java-sdk-maven-stage-master/1380/
+project: msb-java-sdk
+version: 1.6.0
